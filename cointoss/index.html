@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Coin Toss Game</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="message">Select either heads or tails</div>
+   	<button type="button">Heads</button>
+   	<button type="button">Tails</button>
+	
+	<script>
+		const coinArray = ["Heads", "Tails"];
+		const message = document.querySelector(".message");
+		const buttons = document.querySelectorAll("button");
+
+		// adding event listeners
+		for(let i=0; i<buttons.length; i++) {
+			// console.log(buttons[i]);
+			buttons[i].addEventListener("click", tossCoin);
+		}
+
+		function tossCoin(e) {
+			console.log("player: ", e.target.innerText);
+			let computerToss = Math.floor(Math.random()*2);
+			// computer toss is given a text value via index in array from above variable
+			console.log("computer: ", coinArray[computerToss]);
+		}
+	</script>
+  <script src="main.js"></script>
+</body>
+</html>
