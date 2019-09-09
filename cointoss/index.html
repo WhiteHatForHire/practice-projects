@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="message">Select either heads or tails</div>
+  <div class="message">Select either heads or tails <br> Player 0 Computer 0</div>
    	<button type="button">Heads</button>
    	<button type="button">Tails</button>
 	
@@ -16,6 +16,7 @@
 		const coinArray = ["Heads", "Tails"];
 		const message = document.querySelector(".message");
 		const buttons = document.querySelectorAll("button");
+		let score = [0,0];
 
 		// adding event listeners
 		for(let i=0; i<buttons.length; i++) {
@@ -24,10 +25,27 @@
 		}
 
 		function tossCoin(e) {
-			console.log("player: ", e.target.innerText);
+			let playerGuess = e.target.innerText;
 			let computerToss = Math.floor(Math.random()*2);
-			// computer toss is given a text value via index in array from above variable
-			console.log("computer: ", coinArray[computerToss]);
+			let computerGuess = coinArray[computerToss];
+			console.log(playerGuess, computerGuess);
+			if(playerGuess === computerGuess) {
+				output = "Player Wins";
+				//win
+				score[0]++;
+			} else {
+				output = "Computer Wins";
+				//loss
+				score[1]++;
+			}
+
+			message.innerHTML = `
+			Computer selected ${computerGuess}
+			<br>
+			Player selected ${playerGuess}
+			<br>
+			<strong>${output}</strong> <br>Player ${score[0]} Computer ${score[1]}
+			`;
 		}
 	</script>
   <script src="main.js"></script>
