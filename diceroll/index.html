@@ -18,20 +18,63 @@
    }
 
    #output {
-      width: 550px
+      width: 550px;
+      text-align: center;
+      font-size: 2em;
+   }
+
+   button {
+      padding: 10px;
+      text-align: center;
+      width: 550px;
    }
    </style>
 </head>
 <body>
 
    <div class="gameArea">
-      <div id="output"></div>
       <div id="player1"></div>
       <div id="player2"></div>
    </div>
    <button type="button">Roll</button>
+   <div id="output"></div>
    <script>
-   
+      // Elements
+      const button = document.querySelector("button");
+      const player1 = document.querySelector("#player1");
+      const player2 = document.querySelector("#player2");
+      const output = document.getElementById("output");
+
+      // Button click function
+      button.addEventListener("click", function(){
+         let rolls = [roll(6),roll(6)];
+         let temp;
+         if(rolls[0] == rolls[1]) {
+            temp = "It was a draw"
+         } else if (rolls[0] > rolls[1]) {
+            temp = "Player 1 Wins!"
+         } else {
+            temp = "Player 2 Wins!"
+         }
+         output.innerHTML = `
+         <h1>${temp}</h1>
+         `
+         console.log(rolls);
+         player1.innerHTML = rolls[0];
+         player2.innerHTML = rolls[1]
+      });
+
+
+      function roll(num) {
+         let rollNumber = Math.floor(Math.random()*num + 1);
+         let n = 9855 + rollNumber;
+         let char = "&#"+n+";"
+         console.log(char);
+         return char;
+      }
+
+
+
    </script>
 </body>
 </html>
